@@ -45,7 +45,7 @@ public class Ventana_VizualizarFaltas extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
+                "Nombre", "Apellido", "Grupo", "Fecha", "Turno"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
