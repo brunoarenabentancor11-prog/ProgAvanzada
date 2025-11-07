@@ -10,16 +10,18 @@ package Capa_Logica;
  */
 public class Ingreso {
    
-private int cI;
+private String cI;
 private String contrasenia;      
 
-    public int getcI() {
+    public String getcI() {
         return cI;
     }
 
-    public void setcI(int cI) {
+    public void setcI(String cI) {
         this.cI = cI;
     }
+
+  
 
     public String getContrasenia() {
         return contrasenia;

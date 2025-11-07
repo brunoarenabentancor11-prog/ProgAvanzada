@@ -4,11 +4,16 @@
  */
 package Capa_Grafica;
 
+import Capa_Logica.FachadaLogica;
+import Capa_Logica.Ingreso;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author bruno
  */
 public class Ventana_Principal extends javax.swing.JFrame {
+    FachadaLogica logica=new FachadaLogica();
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Ventana_Principal.class.getName());
 
@@ -17,6 +22,10 @@ public class Ventana_Principal extends javax.swing.JFrame {
      */
     public Ventana_Principal() {
         initComponents();
+    }
+     private void limpiar() {
+        txtCi.setText("");
+        jPasswordField1.setText("");
     }
 
     /**
@@ -29,35 +38,42 @@ public class Ventana_Principal extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtCi = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnInicio = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jPasswordField1 = new javax.swing.JPasswordField();
+        btnRegistrarse = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("CI:");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel2.setText("CONTRASEÑA:");
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jButton1.setText("INGRESAR");
+        btnInicio.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        btnInicio.setText("INGRESAR");
+        btnInicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInicioActionPerformed(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton2.setText("VIZUALIZAR FALTAS");
-
-        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField1ActionPerformed(evt);
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        btnRegistrarse.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        btnRegistrarse.setText("REGISTRAR");
+        btnRegistrarse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarseActionPerformed(evt);
             }
         });
 
@@ -76,42 +92,108 @@ public class Ventana_Principal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtCi, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(63, 63, 63)
+                        .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(btnRegistrarse, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton2)))
-                .addContainerGap(118, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(110, 110, 110)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(53, 53, 53)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnRegistrarse, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(109, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed
+      try {
+        String usuario = txtCi.getText();
+        String contrasenia = new String(jPasswordField1.getPassword());
 
-    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField1ActionPerformed
+        if (usuario.isEmpty() || contrasenia.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe completar todos los datos.");
+            return;
+        }
+
+        // Primero verifico si ya existe el usuario
+        boolean existe = logica.iniciarSesion(usuario, contrasenia); 
+        if (existe) {
+            JOptionPane.showMessageDialog(null, "El usuario ya está registrado ❌");
+            return;
+        }
+
+        // Crear el objeto Login y registrar
+        Ingreso nuevo = new Ingreso();
+        nuevo.setcI(usuario);
+        nuevo.setContrasenia(contrasenia);
+
+        logica.registrarUsuario(nuevo);
+        JOptionPane.showMessageDialog(null, "Usuario registrado con éxito ✅");
+
+    } catch (Exception ex) {
+        JOptionPane.showMessageDialog(null, "Error al registrar: " + ex.getMessage());
+    }
+
+    limpiar();                                          
+
+    }//GEN-LAST:event_btnRegistrarseActionPerformed
+
+    private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
+               try {
+        String ci = txtCi.getText();
+        String contrasenia = new String(jPasswordField1.getPassword());
+
+        if (ci.isEmpty() || contrasenia.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe completar todos los campos.");
+            return;
+        }
+
+        boolean valido = logica.iniciarSesion(ci, contrasenia);
+
+        if (valido) {
+            JOptionPane.showMessageDialog(null, "Bienvenido " + ci + " 🎉");
+            
+            limpiar();
+            dispose(); // cierro la ventana actual
+           Ventana_Docentes vd = new Ventana_Docentes(); // abro la otra ventana
+            vd.setVisible(true);
+
+        } else {
+            JOptionPane.showMessageDialog(null, "CI o contraseña incorrectos ❌");
+        }
+
+    } catch (Exception ex) {
+        JOptionPane.showMessageDialog(null, "Error al iniciar sesión: " + ex.getMessage());
+    }
+    }//GEN-LAST:event_btnInicioActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+                                                  
+    Ventana_VizualizarFaltas v = new Ventana_VizualizarFaltas();
+    v.setLocationRelativeTo(null); // lo centra
+    v.setVisible(true);
+
+
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -139,11 +221,12 @@ public class Ventana_Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnInicio;
+    private javax.swing.JButton btnRegistrarse;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField txtCi;
     // End of variables declaration//GEN-END:variables
 }

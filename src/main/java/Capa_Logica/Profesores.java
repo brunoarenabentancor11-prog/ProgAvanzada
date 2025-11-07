@@ -4,52 +4,26 @@
  */
 package Capa_Logica;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author bruno
  */
-public class Profesores{
-    
-   private int cI;
-   private String nombre;      
-   private String apellido; 
-   private String materia;
+public class Profesores {
+  
+  public ArrayList<Profesor> profesores = new ArrayList<>();
+  
+  public  void agregarProfesor (Profesor profesor) {
+      profesores.add(profesor);
+  }
 
-    public int getcI() {
-        return cI;
+    public ArrayList<Profesor> getProfesor() {
+        return profesores;
     }
 
-    public void setcI(int cI) {
-        this.cI = cI;
+    public void setProfesores(ArrayList<Profesor> profesores) {
+        this.profesores = profesores;
     }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
-    public String getMateria() {
-        return materia;
-    }
-
-    public void setMateria(String materia) {
-        this.materia = materia;
-    }
-           
- 
-
-            
-            
-            
+      
 }
